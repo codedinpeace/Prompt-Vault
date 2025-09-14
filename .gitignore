@@ -1,30 +1,18 @@
-# Node modules
-backend/node_modules/
+# dependencies
+node_modules
+backend/node_modules
+frontend/node_modules
 
-# Environment variables
+# env files
 .env
+backend/.env
+frontend/.env
 
-# Logs
-logs
-*.log
+# build outputs
+dist
+build
+
+# logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
-
-# OS files
-.DS_Store
-Thumbs.db
-
-# Build outputs (if any)
-dist/
-build/
-
-# VSCode settings
-.vscode/
-
-# Frontend dependencies (if using npm/yarn in frontend)
-/frontend/node_modules/
-
-# Misc
-*.bak
-*.swp
