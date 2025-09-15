@@ -10,7 +10,8 @@ const protectedRouteMiddleware = async (req,res,next) =>{
         req.user = user
         next()
     } catch (error) {
-        res.status(400).json({message:"Something went wrong"})
+        res.status(400).json({message:"something went wrong"})
+        console.log(error)
     }
 }
 
