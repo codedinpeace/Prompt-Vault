@@ -46,7 +46,13 @@ const logout = async (req, res) => {
     }
 };
 const check = async (req, res) => {
-    
+    try {
+      const user = req.user
+      if(!user) return res.status(400).json({message:"User doesn't exist"})
+        res.status(200).json({message:"User authenticated Successfully", user})
+    } catch (error) {
+      res.status(400).json({message:"Something went wrong"})
+    }
 };
 
 module.exports = { signup, login, logout, check };
