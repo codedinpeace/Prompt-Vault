@@ -17,6 +17,10 @@ const promptSchema = mongoose.Schema({
     tags:[{
         type:String,
     }],
+    category:{
+        type:String,
+        default:"Uncategorized",
+    },
     owner:{type:mongoose.Types.ObjectId, ref:"User"}
 }, {timestamps:true})
 

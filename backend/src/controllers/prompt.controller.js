@@ -1,4 +1,5 @@
 const promptModel = require('../models/promptModel')
+const categorizePrompt = require('../service/Ai.services')
 
 const createPrompt = async (req,res)=>{
     const {title, prompt, visibility, tags} = req.body
@@ -10,23 +11,38 @@ const createPrompt = async (req,res)=>{
             visibility,
             tags,
             owner,
+            category:await categorizePrompt(prompt)
         })
 
-        if(createdPrompt.visibility==="private"){
-            await promptModel.findOne({owner})
-            res.status(200).json({message:"Prompt created Privately", createdPrompt})
+        if(createdPrompt.visibility==="Private"){   
+            return res.status(200).json({message:"Prompt created Privately", privatePrompt:createdPrompt})
         }
         
-        res.status(200).json({message:"Prompt created Publicly"})
+        res.status(200).json({message:"Prompt created Publicly", createdPrompt})
     } catch (error) {
         res.status(400).json({message:"Something went wrong while creating the prompt"})
+        console.log(error)
     }
 }
 const deletePrompt = async (req,res)=>{
-
+    const {id} = req.params
+    try {
+        const deletedPrompt = await promptModel.findOneAndDelete({_id:id})
+        res.status(200).json({message:"Prompt deleted successfully", deletedPrompt})
+    } catch (error) {
+        res.status(400).json({message:"Something went wrong"})
+    }
 }
 const getPrompt = async (req,res)=>{
-
+    const {id} = req.params
+    try {
+        const prompt = await promptModel.findOne({_id:id})
+        if(!prompt) return res.status(404).json({message:"Prompt doesn't exist"})
+            res.status(200).json(prompt)
+    } catch (error) {
+        res.status(400).json({message:"Something went wrong"})
+        console.log(error)
+    }
 }
 
 module.exports = {createPrompt,deletePrompt,getPrompt}

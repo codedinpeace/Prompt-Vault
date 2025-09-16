@@ -6,7 +6,7 @@ const protectedRouteMiddleware = async (req,res,next) =>{
         const token = req.cookies.token
         if(!token) return res.status(401).json({message:"Invalid Token"})
             const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY_GENERATOR)
-        const user = await userModel.findOneById(decoded.userId)
+        const user = await userModel.findById(decoded.userId)
         req.user = user
         next()
     } catch (error) {
