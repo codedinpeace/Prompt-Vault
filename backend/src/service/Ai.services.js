@@ -12,7 +12,18 @@ async function categorizePrompt(prompt) {
       messages: [
         {
           role: "user",
-          content: `Categorize this prompt into one of: Writing, Coding, Design, Chat.\nPrompt: "${prompt}"`,
+          content: `Categorize this prompt strictly into one of the following categories:
+          - Content Writing
+          - Code Generation
+          - Data Analysis
+          - Creative Writing
+          - Marketing
+          - Research
+          - Education
+          - Business
+
+          Only return the category name exactly as written above, nothing else.
+          Prompt: "${prompt}"`,
         },
       ],
       max_tokens: 10,

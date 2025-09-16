@@ -45,4 +45,14 @@ const getPrompt = async (req,res)=>{
     }
 }
 
-module.exports = {createPrompt,deletePrompt,getPrompt}
+
+const categoryPrompt = async (req,res)=>{
+    const {category} = req.body
+    try {
+        const categorizedPrompt = await promptModel.find({category})
+        res.status(200).json(categorizedPrompt)
+    } catch (error) {
+        res.status(400).json({message:"Something went wrong"})
+    }
+}
+module.exports = {createPrompt,deletePrompt,getPrompt, categoryPrompt}
