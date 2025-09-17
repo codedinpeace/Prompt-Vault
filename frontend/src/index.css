@@ -1,13 +1,22 @@
 @import "tailwindcss";
 
+
 html,body{
     font-family: "Poppins";
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
 
+.Ball1{
+    animation: Bounce2 3s infinite alternate ease-in-out;
+}
+
 .ctaBg{
     animation: fadeInUp 5s infinite alternate ease-in-out;
+}
+
+.bigBox{
+    animation: Bounce 5s infinite alternate ease-in-out;
 }
 
 @keyframes fadeInUp {
@@ -17,5 +26,22 @@ html,body{
 
     to {
         background-color: #43388d
+    }
+}   
+
+@keyframes Bounce {
+    from {
+        transform: translateY(0); /* start at original position */
+    }
+    to {
+        transform: translateY(5px); /* move down 100px */
+    }
+}
+@keyframes Bounce2 {
+    from {
+        transform: translateY(0); /* start at original position */
+    }
+    to {
+        transform: translateY(50px); /* move down 100px */
     }
 }

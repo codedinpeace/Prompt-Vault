@@ -3,37 +3,46 @@
   import { Link } from "react-router-dom";
   import gsap from 'gsap';
   import { useGSAP } from '@gsap/react';
+  import { useAuthStore } from "../States/AuthStore";
 
   const Navbar = () => {
 
+    
+    const { authUser, isLoggedIn } = useAuthStore();
+    
     useGSAP(()=>{
-      gsap.from(".logo", {
-        y:-50,
-        x:-50,
-        opacity:0,
-        duration:0.7,
-      })
-      gsap.from(".logoHeading", {
-        y:-50,
-        x:-50,
-        opacity:0,
-        duration:0.7,
-      })
-      gsap.from(".button", {
-        y:-50,
-        x:50,
-        opacity:0,
-        duration:0.7,
-      })
-      gsap.from(".Navbar a", {
-        y:-50,
-        opacity:0,
-        duration:0.5,
-        stagger:0.2,
-      })
-    })
+      if(authUser){
 
+        gsap.from(".logo", {
+          delay:0.5,
+          y:-50,
+          x:-50,
+          opacity:0,
+          duration:0.7,
+        })
+        gsap.from(".logoHeading", {
+          y:-50,
+          x:-50,
+          opacity:0,
+          duration:0.7,
+        })
+        gsap.from(".button", {
+          y:-50,
+          x:50,
+          opacity:0,
+          duration:0.7,
+        })
+        gsap.from(".Navbar a", {
+          y:-50,
+          opacity:0,
+          duration:0.5,
+          stagger:0.2,
+        })
+      }
+    })
+    
     const [visible, setIsVisible] = useState(false)
+    
 
     return (
       <>
@@ -62,13 +71,21 @@
               Features
             </a>
           </div>
-          <div className="flex gap-2">
-            <Link
+          <div className="flex gap-3">
+            {
+              isLoggedIn ?
+          <Link to="/profile" className="cursor-pointer"><div className="bg-[#9089e5] w-10 h-10 rounded-full text-xl font-semibold text-white flex justify-center">
+            <p className="text-center my-auto">{authUser.name.charAt(0)}</p>
+          </div></Link>
+          :
+             <Link
               to="/login"
               className="button text-lg  bg-[#9089E5] px-6 py-2 text-white rounded-md "
             >
               Login
-            </Link>
+            </Link> 
+            }
+            
             <Link
               to="/add-prompt"
               className="button flex text-md items-center group  bg-zinc-100 px-6 py-2 rounded-md border-1 border-zinc-300"
