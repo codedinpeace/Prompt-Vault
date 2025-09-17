@@ -5,3 +5,17 @@ html,body{
     overflow-x: hidden;
     scroll-behavior: smooth;
 }
+
+.ctaBg{
+    animation: fadeInUp 5s infinite alternate ease-in-out;
+}
+
+@keyframes fadeInUp {
+    from {
+        background-color: #796bd1;
+    }
+
+    to {
+        background-color: #43388d
+    }
+}
