@@ -8,13 +8,14 @@ import DashBoard from './Pages/DashBoard'
 import Community from './Pages/Community'
 import AddPrompts from './Pages/AddPrompts'
 import Categories from './Pages/Categories'
+import LandingPage from './LandingPage/LandingPage'
 
 const App = () => {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path="/" element={<Hero />} />
+        <Route path="/" element={<LandingPage />} />
         <Route path="/signup" element={<Signup />} />
         <Route path="/login" element={<Login />} />
         <Route path="/dashboard" element={<DashBoard />} />

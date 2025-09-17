@@ -71,9 +71,9 @@
             </Link>
             <Link
               to="/add-prompt"
-              className="button flex text-md items-center bg-zinc-100 px-6 py-2 rounded-md border-1 border-zinc-300"
+              className="button flex text-md items-center group  bg-zinc-100 px-6 py-2 rounded-md border-1 border-zinc-300"
             >
-              <Plus />
+              <Plus className="group-hover:rotate-360 transition-all duration-2000 group-hover:scale-105 "/>
               Add Prompt
             </Link>
           </div>

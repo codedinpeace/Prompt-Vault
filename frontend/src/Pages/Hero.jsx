@@ -48,7 +48,7 @@ const Hero = () => {
           </div>
           <div className='buttons flex gap-5'>
             <Link to="/login">
-            <button className='px-7 py-3 bg-[#9E92E8] text-xl text-white font-medium rounded-md cursor-pointer border-1 hover:bg-transparent hover:text-black border-[#9E92E8] transition-all duration-100 flex gap-1 max-md:text-[16px] max-md:px-4 max-sm:text-[14px] max-sm:px-2'>Get Started Free <ArrowRight className='max-sm:hidden' /></button>
+            <button className='px-7 py-3 bg-[#9E92E8] text-xl text-white font-medium rounded-md cursor-pointer border-1 hover:bg-transparent hover:text-black border-[#9E92E8] transition-all duration-100 flex gap-1 max-md:text-[16px] max-md:px-4 max-sm:text-[14px] max-sm:px-2 items-center'>Get Started Free <ArrowRight className='max-sm:hidden' /></button>
             </Link>
             <Link to="/community">
             <button className='px-7 py-3 border-1 transition-all duration-100 border-gray-400  text-xl hover:bg-[#9E92E8] hover:border-[#9E92E8] hover:text-white font-medium rounded-md cursor-pointer max-md:text-[16px] max-md:px-4 max-sm:text-[14px] max-sm:px-2' >Explore Community</button>
