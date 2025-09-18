@@ -10,6 +10,7 @@ const protectedRouteMiddleware = async (req,res,next) =>{
         req.user = user
         next()
     } catch (error) {
+        if(error.name === "TokenExpiredError")return res.json({message:"Token expired"})
         res.status(400).json({message:"something went wrong"})
         console.log(error)
     }

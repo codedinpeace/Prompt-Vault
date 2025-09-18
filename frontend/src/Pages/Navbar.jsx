@@ -5,7 +5,7 @@
   import { useGSAP } from '@gsap/react';
   import { useAuthStore } from "../States/AuthStore";
 
-  const Navbar = () => {
+  const Navbar = ({photo}) => {
 
     
     const { authUser, isLoggedIn } = useAuthStore();
@@ -74,8 +74,9 @@
           <div className="flex gap-3">
             {
               isLoggedIn ?
+              
           <Link to="/profile" className="cursor-pointer"><div className="bg-[#9089e5] w-10 h-10 rounded-full text-xl font-semibold text-white flex justify-center">
-            <p className="text-center my-auto">{authUser.name.charAt(0)}</p>
+            {photo ? <img src={photo} alt="" className="rounded-full" /> : <p className="text-center my-auto">{authUser.name.charAt(0)}</p>}
           </div></Link>
           :
              <Link
