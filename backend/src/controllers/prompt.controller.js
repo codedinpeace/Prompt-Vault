@@ -1,10 +1,11 @@
 const promptModel = require('../models/promptModel')
+const userModel = require('../models/userModel')
 const categorizePrompt = require('../service/Ai.services')
 
 const createPrompt = async (req,res)=>{
     const {title, prompt, visibility, tags} = req.body
     try {
-        const owner = req.user._id
+        const owner = await userModel.findOne(req.user._id)
         const createdPrompt = await promptModel.create({
             title,
             prompt,
@@ -14,9 +15,9 @@ const createPrompt = async (req,res)=>{
             category:await categorizePrompt(prompt)
         })
 
-        if(createdPrompt.visibility==="Private"){   
-            return res.status(200).json({message:"Prompt created Privately", privatePrompt:createdPrompt})
-        }
+        // if(createdPrompt.visibility==="Private"){   
+        //     return res.status(200).json({message:"Prompt created Privately", privatePrompt:createdPrompt})
+        // }
         
         res.status(200).json({message:"Prompt created Publicly", createdPrompt})
     } catch (error) {

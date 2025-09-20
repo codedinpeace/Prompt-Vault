@@ -30,11 +30,15 @@ const login = async (req, res) => {
       password,user.password
     );
     if (!comparedPassword)
-      return res.status(400).json({ message: "Invalid credentials" });
-    genToken(user._id, res);
+      return res.status(402).json({ message: "Invalid credentials" });
+    const token = genToken(user._id, res);
+
+    // set cookie here
+    res.cookie("token", token);
     res.status(200).json({ message: "Successfully LoggedIn", user });
   } catch (error) {
     res.status(400).json({ message: "Something went wrong" });
+    console.log(error)
   }
 };
 const logout = async (req, res) => {
@@ -45,6 +49,17 @@ const logout = async (req, res) => {
         res.status(400).json({message:"Something went wrong"})
     }
 };
+
+const findOwner = async (req,res)=>{
+  try {
+    const {id} = req.body
+    const foundUser = await userModel.findOne({id})
+    res.status(200).json({foundUser})
+  } catch (error) {
+    res.status(400).json({message:"Something went wrong"})
+  }
+}
+
 const check = async (req, res) => {
     try {
       const user = req.user
@@ -55,4 +70,4 @@ const check = async (req, res) => {
     }
 };
 
-module.exports = { signup, login, logout, check };
+module.exports = { signup, login, logout, check, findOwner };

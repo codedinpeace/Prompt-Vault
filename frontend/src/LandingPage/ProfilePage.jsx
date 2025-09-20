@@ -2,18 +2,52 @@ import React, {useState, useEffect} from 'react'
 import { Camera } from 'lucide-react'
 import axios from 'axios'
 import { useAuthStore } from '../States/AuthStore'
+import { useNavigate } from 'react-router-dom'
 
 const ProfilePage = () => {
 
   const [photo, setPhoto] = useState(null)
-  const {authUser} = useAuthStore()
-
+  const [isPhotoUploading, setIsPhotoUploading] = useState(false)
+  const {authUser, logOut} = useAuthStore()
+  const Navigate = useNavigate()
+  
     useEffect(()=>{
       const storedItem = localStorage.getItem("profilePhoto")
       if(storedItem) return setPhoto(storedItem)
     },[])
+    
+    if(isPhotoUploading) return (
+      <div class="w-full mt-120 gap-x-2 flex justify-center items-center">
+  <div
+    class="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"
+  ></div>
+  <div
+    class="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"
+  ></div>
+  <div
+    class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
+  ></div>
+</div>
+
+    )
+
+
+    if(!authUser) return (
+      <div class="w-full mt-120 gap-x-2 flex justify-center items-center">
+  <div
+    class="w-5 bg-[#d991c2] animate-pulse h-5 rounded-full animate-bounce"
+  ></div>
+  <div
+    class="w-5 animate-pulse h-5 bg-[#9869b8] rounded-full animate-bounce"
+  ></div>
+  <div
+    class="w-5 h-5 animate-pulse bg-[#6756cc] rounded-full animate-bounce"
+  ></div>
+</div>
+    )
 
     async function handlePhotoSubmit (e) {
+      setIsPhotoUploading(true)
       const file = e.target.files[0]
       if(!file) return
   
@@ -25,9 +59,14 @@ const ProfilePage = () => {
       const response = await axios.post("https://api.cloudinary.com/v1_1/dpz4owext/image/upload", data)
       setPhoto(response.data.secure_url)
       localStorage.setItem("profilePhoto", response.data.secure_url)
+      setIsPhotoUploading(false)
       // https://api.cloudinary.com/v1_1/demo/image/upload
     }
 
+    function handleLogout () {
+      logOut()
+      Navigate("/")
+    }
 
   return (
     <div className='bg-[#9E92E8] h-[92.5vh]'>
@@ -55,6 +94,7 @@ const ProfilePage = () => {
   <div className='flex flex-col gap-5 '>
     <h3 className='text-xl font-medium max-sm:text-lg'>Email : {authUser.email}</h3>
     <h3 className='text-xl font-medium max-sm:text-lg'>User from : {authUser.createdAt.split("T")[0]}</h3>
+    <button onClick={handleLogout} className='text-lg bg-red-400 py-2 rounded-md text-white font-medium hover:bg-red-500 transition-all duration-150 cursor-pointer'>Log Out</button>
   </div>
 </div>
     </div>

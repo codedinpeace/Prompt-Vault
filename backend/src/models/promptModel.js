@@ -11,8 +11,8 @@ const promptSchema = mongoose.Schema({
     },
     visibility:{
         type:String,
-        default:"Public",
-        enum: ["Public", "Private"]
+        default:"public",
+        enum: ["public", "private", "Public", "Private"]
     },
     tags:[{
         type:String,
@@ -21,7 +21,7 @@ const promptSchema = mongoose.Schema({
         type:String,
         default:"Uncategorized",
     },
-    owner:{type:mongoose.Types.ObjectId, ref:"User"}
+    owner:{type:String, ref:"User"}
 }, {timestamps:true})
 
 module.exports = mongoose.model("Prompt", promptSchema)

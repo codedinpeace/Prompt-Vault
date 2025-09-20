@@ -3,15 +3,16 @@ import Logo from '../smallComponents/logo'
 import { Link } from 'react-router-dom'
 import { User, Eye, EyeClosed } from 'lucide-react'
 import { useAuthStore } from '../States/AuthStore'
+import { useNavigate } from 'react-router-dom'
 
 const Login = () => {
-
+  const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [user, setUser] = useState({
     email:"",
     password:"",
   })
-  const {login, isLoggingIn} = useAuthStore()
+  const {loginUser, isLoggingIn} = useAuthStore()
 
   if(isLoggingIn){
     return <div className="mt-120 flex justify-center align-center">Loading...</div>
@@ -19,7 +20,6 @@ const Login = () => {
 
   function changeShowPassword () {
     setShowPassword(!showPassword)
-    login(user)
   }
 
  function changeEmail(e){
@@ -31,6 +31,11 @@ const Login = () => {
     setUser((prev)=>({
       ...prev, password:e.target.value
     }))
+ }
+
+ function handleSubmit( ){
+   loginUser(user)
+   navigate("/")
  }
 
   return (
@@ -47,7 +52,7 @@ const Login = () => {
       <div>
         <h1 className='text-3xl font-semibold mb-7 max-sm:text-center'>Login</h1>
       </div>
-        <form action="" className='flex flex-col gap-4 max-sm:items-center'>
+        <form action="" onSubmit={handleSubmit} className='flex flex-col gap-4 max-sm:items-center'>
         <div className='relative w-120 max-sm:w-70'>  
           <input onChange={changeEmail} type="email"  placeholder='Enter your email' className='max-sm:w-70 w-120 text-lg h-10 border-1 max-md:w-100 border-[#2e2e2e] outline-none rounded-md pl-8'/>
             <User className='absolute top-2 left-0  mr-3 ml-1'/>
@@ -57,7 +62,7 @@ const Login = () => {
             { showPassword ? <EyeClosed onClick={changeShowPassword} className='absolute cursor-pointer top-2 right-0  mr-3'/> : <Eye onClick={changeShowPassword} className='absolute cursor-pointer top-2 right-0  mr-3'/>}
             </div>
           <div className='flex items-end gap-5 max-sm:flex-col max-sm:items-center '>
-          <button className='bg-[#9E92e8] border-1 border-[#9e92e8] cursor-pointer hover:bg-transparent hover:text-black max-md:px-10 px-12 py-1 text-lg rounded-md text-white font-semibold'>Log In</button>
+          <button type='submit' className='bg-[#9E92e8] border-1 border-[#9e92e8] cursor-pointer hover:bg-transparent hover:text-black max-md:px-10 px-12 py-1 text-lg rounded-md text-white font-semibold'>Log In</button>
         <p>Dont have an account? <Link to="/signup" className='text-[#7565df] underline'>Sign Up</Link></p>
           </div>    
         </form>
