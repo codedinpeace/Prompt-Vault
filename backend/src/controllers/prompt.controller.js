@@ -46,6 +46,16 @@ const getPrompt = async (req,res)=>{
     }
 }
 
+const getCommunityPrompts = async (req,res)=>{
+    try {
+        const publicPrompt = await promptModel.find({visibility : {$nin: ["Private","private"]}})
+        .populate("owner")
+        res.json(publicPrompt)
+    } catch (error) {
+        res.status(400).json({message:"Something went wrong"})
+        console.log(error)
+    }
+}
 
 const categoryPrompt = async (req,res)=>{
     const {category} = req.body
@@ -56,4 +66,4 @@ const categoryPrompt = async (req,res)=>{
         res.status(400).json({message:"Something went wrong"})
     }
 }
-module.exports = {createPrompt,deletePrompt,getPrompt, categoryPrompt}
+module.exports = {createPrompt,deletePrompt,getPrompt, categoryPrompt, getCommunityPrompts}

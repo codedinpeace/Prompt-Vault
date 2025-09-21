@@ -131,12 +131,20 @@
               </a>
             </div>
             <div className="flex gap-5 flex-col">
-              <Link
-                to="/login"
-                className="text-lg  bg-[#fff] text-black w-30 font-semibold text-center  px-6 py-2  rounded-md "
-              >
-                Login
-              </Link>
+            {
+              isLoggedIn ?
+              
+          <Link to="/profile" className="cursor-pointer"><div className="bg-[#9089e5] w-10 h-10 rounded-full text-xl font-semibold text-white flex justify-center">
+            {photo ? <img src={photo} alt="" className="rounded-full" /> : <p className="text-center my-auto">{authUser.name.charAt(0)}</p>}
+          </div></Link>
+          :
+             <Link
+              to="/login"
+              className="button text-lg  bg-[#9089E5] px-6 py-2 text-white rounded-md "
+            >
+              Login
+            </Link> 
+            }
               <Link
                 to="/add-prompt"
                 className="flex text-md items-center bg-zinc-100 px-6 py-2 w-50 text-black rounded-md border-1 border-zinc-300"

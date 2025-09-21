@@ -6,6 +6,8 @@
     Prompts: JSON.parse(localStorage.getItem("Prompts")) || [], // parse or fallback to empty array
     isAddingPrompt: false,
     owner: null,
+    communityPrompts:[],
+    isFetchingPrompts:false,
 
     addPrompts: async (data) => {
         set({ isAddingPrompt: true })
@@ -22,6 +24,21 @@
         set({ isAddingPrompt: false })
         toast.error("Something went wrong")
         console.log(error)
+        }
+    },
+
+    communityPromptsFunction: async ()=>{
+        set({isFetchingPrompts:true})
+        try {
+            const response = await axiosInstance.get("/get-community-prompts")
+            set((state)=>{
+                const communtiyPromptsSetter = [...state.communityPrompts, ...response.data]
+                return {communityPrompts:communtiyPromptsSetter, isFetchingPrompts:false}
+            })
+            console.log(response.data)
+        } catch (error) {
+            toast.success("Something went wrong")
+            console.log(error)
         }
     },
 
