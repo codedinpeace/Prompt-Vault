@@ -1,5 +1,5 @@
 import React, {useState, useEffect} from 'react'
-import { useParams, Link, useNavigate } from 'react-router-dom'
+import { useParams, Link } from 'react-router-dom'
 import {toast} from 'react-hot-toast'
 import { Copy, Plus } from 'lucide-react'
 import { usePromptStore } from '../States/PromptState'
@@ -7,8 +7,7 @@ import { usePromptStore } from '../States/PromptState'
 const CommunityCategory = () => {
   const {comname} = useParams()
   const [filteredItems, setFilteredItems, isFetchingPrompts] = useState([])
-  const {communityPrompts, isAllPromptsVisibile} = usePromptStore()
-  const navigate = useNavigate()
+  const {communityPrompts} = usePromptStore()
 
   useEffect(()=>{
     const filtered = communityPrompts.filter(prompt=>prompt.category.includes(comname))
