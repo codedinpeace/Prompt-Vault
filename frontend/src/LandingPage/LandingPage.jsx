@@ -1,5 +1,5 @@
 import React from 'react'
-import Hero from '../Pages/hero'
+import Hero from '../Pages/Hero'
 import Features from './Features'
 import HowItWorks from './HowItWorks'
 import CTA from './CTA'
