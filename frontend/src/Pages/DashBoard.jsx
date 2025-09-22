@@ -5,9 +5,9 @@ import { Copy } from 'lucide-react'
 import { usePromptStore } from '../States/PromptState'
 import toast from 'react-hot-toast'
 
-const DashBoard = () => {
+const DashBoard = () => { 
 
-  const {Prompts, findOwner} = usePromptStore()
+  const {Prompts, setIsTrue} = usePromptStore()
   function copy (){
     navigator.clipboard.writeText(Prompts.map((prompt)=>prompt.prompt).join("\n"))
     .then(()=>{
@@ -18,9 +18,10 @@ const DashBoard = () => {
     })
   }
 
+
+
   const {authUser} = useAuthStore()
   const categories = [
-    "All Prompts",
     "Content Writing",
     "Code Generation",
     "Data Analysis",
@@ -48,10 +49,15 @@ const DashBoard = () => {
       <Link className='text-[#9392e8] hover:underline text-2xl font-medium' to="/community">Community</Link>
         </div>
       <div className='flex justify-center flex-wrap max-sm:gap-5 mt-10 gap-10'>
-       {categories.map((category)=>(
-        <Link to={`/category/${category}`}>
-         <button className='text-sm bg-[#9e92e8] px-3 py-1 rounded-full border-1 border-[#9e92e8] hover:bg-transparent hover:text-black cursor-pointer  text-white font-medium active:scale-90 transition-all duration-300'>{category}</button>
+          <Link>
+         <button onClick={()=>{setIsTrue(true)}} className='text-sm bg-[#9e92e8] px-3 py-1 rounded-full border-1 border-[#9e92e8] hover:bg-transparent hover:text-black cursor-pointer  text-white font-medium active:scale-90 transition-all duration-300'>All Prompts</button>
         </Link>
+       {categories.map((category)=>(
+        <div>
+        <Link to={`/category/${category}`}>
+         <button onClick={()=>{setIsTrue(false)}} className='text-sm bg-[#9e92e8] px-3 py-1 rounded-full border-1 border-[#9e92e8] hover:bg-transparent hover:text-black cursor-pointer  text-white font-medium active:scale-90 transition-all duration-300'>{category}</button>
+        </Link>
+        </div>
         ))}
       </div>
         </div>

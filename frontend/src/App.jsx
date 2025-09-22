@@ -12,6 +12,7 @@ import toast, { Toaster } from "react-hot-toast";
 import { useAuthStore } from "./States/AuthStore";
 import ProfilePage from "./LandingPage/ProfilePage";
 import {  Navigate } from "react-router-dom";
+import CommunityCategory from "./Pages/CommunityCategory";
 
 
 const App = () => {
@@ -93,6 +94,7 @@ const App = () => {
 
   <Route path="/category/:name" element={<Categories />} />
   <Route path="/profile" element={<ProfilePage />} />
+  <Route path="/community/category/:comname" element={<CommunityCategory/>} />
 </Routes>
     </div>
   );

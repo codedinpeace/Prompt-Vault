@@ -21,7 +21,7 @@ const promptSchema = mongoose.Schema({
         type:String,
         default:"Uncategorized",
     },
-    owner:{type:String, ref:"User"}
+    owner:{type:mongoose.Types.ObjectId, ref:"User"}
 }, {timestamps:true})
 
 module.exports = mongoose.model("Prompt", promptSchema)
