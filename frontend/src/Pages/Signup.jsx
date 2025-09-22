@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { User, Eye, EyeClosed } from 'lucide-react'
-import Logo from '../SmallComponents/Logo'
+  import Logo from '../SmallComponents/Logo'
 import { useAuthStore } from '../States/AuthStore'
 
 const Signup = () => {
@@ -12,7 +12,7 @@ const Signup = () => {
     password:""
   })
 
-  const {isLoggingIn, signUpUser} = useAuthStore()
+  const {isLoggingIn, signUpUser} = useAuthStore() //Something was wrong, now its right
 
 
   function changeShowPassword (){
