@@ -33,8 +33,9 @@ const Login = () => {
     }))
  }
 
- function handleSubmit( ){
+ function handleSubmit(e){
    loginUser(user)
+   e.preventDefault()
    navigate("/")
  }
 

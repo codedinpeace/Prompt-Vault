@@ -1,6 +1,6 @@
 import axios from 'axios'
 
 export const axiosInstance = axios.create({
-    baseURL:import.meta.env.VITE_BACKEND_URL,
+    baseURL:"https://prompt-vault-cyan.vercel.app/api",
     withCredentials:true,
-})
+})  
