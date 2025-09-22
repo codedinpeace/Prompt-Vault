@@ -5,8 +5,8 @@ const genToken = (userId, res)=>{
         const token =  jwt.sign({userId}, process.env.JWT_SECRET_KEY_GENERATOR, {expiresIn:"1d"})
         res.cookie("jwt", token, {
             httpOnly: true,
-            secure: true,    // only sent over HTTPS
-            sameSite: "None", // allows cross-site requests
+            secure: false,    // only sent over HTTPS
+            sameSite: "Lax", // allows cross-site requests
             maxAge: 7 * 24 * 60 * 60 * 1000, // 1 week
           });
         return token

@@ -13,9 +13,9 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"https://prompt-vault-frontend-2.vercel.app",
-    credentials:true,
-}));
+    origin: "http://localhost:5173", // exact frontend URL
+    credentials: true
+  }));
 app.use("/api/auth", authRoutes)
 app.use("/api", promptRoutes)
 

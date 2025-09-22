@@ -12,7 +12,7 @@
         signUpUser : async (data) =>{ 
             set({isLoggingIn:true})
             try {
-            const response = await axiosInstance.post("/auth/signup", data)
+            const response = await axiosInstance.post("/auth/signup", data, {withCredentials:true})
             set({authUser:response.data.user})
             set({isLoggedIn:true})
             toast.success("User Signedup successfully")
@@ -28,7 +28,7 @@
         loginUser : async (data) =>{
             set({isLoggingIn:true})
             try {
-                const response = await axiosInstance.post("/auth/login", data)
+                const response = await axiosInstance.post("/auth/login", data , {withCredentials:true})
                 set({authUser:response.data.user})
                 set({isLoggedIn:true})
                 toast.success("Uset loggedIn Successfully")
@@ -43,7 +43,7 @@
         logOut: async ()=>{
             set({isLoggingOut:false})
             try {
-                const response = await axiosInstance.post("/auth/logout")
+                const response = await axiosInstance.post("/auth/logout", {withCredentials:true})
                 set({authUser:null})
                 set({isLoggedIn:false})
                 toast.success("User loggedOut")
@@ -56,7 +56,7 @@
 
         checkAuth: async ()=>{
             try {
-                const response = await axiosInstance.get("/auth/check")
+                const response = await axiosInstance.get("/auth/check", {withCredentials:true})
                 set({authUser:response.data.user, isLoggedIn:true})  
             } catch (error) {   
                 console.log(error)
