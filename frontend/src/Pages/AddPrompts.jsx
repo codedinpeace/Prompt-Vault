@@ -1,9 +1,10 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { usePromptStore } from "../States/PromptState";
 
 
 const AddPrompts = () => {
   const [tags, setTags] = useState([]);
+  const [result, setResult] = useState("Submit")
   const [tagInput, setTagInput] = useState("");
   const [prompt, setPrompt] = useState({
     title:"",
@@ -11,7 +12,13 @@ const AddPrompts = () => {
     tag:[],
     visibility:""
   })
-  const {addPrompts} = usePromptStore()
+  const {addPrompts, isAddingPrompt} = usePromptStore()
+
+  useEffect(()=>{
+    if(isAddingPrompt){
+      setResult("Submitting.....")
+    }
+  }, [isAddingPrompt])
 
   const handleKeyDown = (e) => {
     if (e.key === "Enter" && tagInput.trim() !== "") {
@@ -126,7 +133,7 @@ const AddPrompts = () => {
           type="submit"
           className="bg-[#9e92e8] text-white font-medium py-2 px-4 rounded-md hover:opacity-90 transition"
         >
-          Submit
+          {result}
         </button>
       </form>
     </div>

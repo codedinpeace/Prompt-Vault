@@ -1,12 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import { useParams, Link } from 'react-router-dom'
 import { usePromptStore } from '../States/PromptState'
-import { Copy, Plus } from 'lucide-react'
+import { Copy, Trash } from 'lucide-react'
 import toast from 'react-hot-toast'
+
 
 const Community = () => {
   const { name } = useParams()
-  const { communityPromptsFunction, communityPrompts, isFetchingPrompts } = usePromptStore()
+  const { communityPromptsFunction, communityPrompts, isFetchingPrompts, DeletePrompt } = usePromptStore()
 
   useEffect(() => {
     communityPromptsFunction().then(() => {
@@ -14,6 +15,9 @@ const Community = () => {
     });
   }, []);
 
+  function Delete (){
+    DeletePrompt()
+  }
 
   const copyText = (text) => {
     if (!text) return
@@ -33,7 +37,6 @@ const Community = () => {
   }
 
   const categories = [
-    "All Prompts",
     "Content Writing",
     "Code Generation",
     "Data Analysis",
@@ -94,9 +97,9 @@ const Community = () => {
               <div className="ml-auto flex gap-2">
                 <Copy onClick={() => copyText(prompt.prompt)} className="cursor-pointer hover:opacity-70" />
                 <p className="opacity-70">copy</p>
+                </div>
               </div>
             </div>
-          </div>
         ))}
       </div>
     </div>

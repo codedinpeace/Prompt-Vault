@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import About from './Pages/About'
+import License from './Pages/License'
 import Navbar from "./Pages/Navbar";
 import Signup from "./Pages/Signup";
 import Login from "./Pages/Login";
@@ -13,6 +15,8 @@ import { useAuthStore } from "./States/AuthStore";
 import ProfilePage from "./LandingPage/ProfilePage";
 import {  Navigate } from "react-router-dom";
 import CommunityCategory from "./Pages/CommunityCategory";
+import PrivacyPolicy from "./Pages/PrivactPolicy";
+import ContactSection from "./LandingPage/ContactSection";
 
 
 const App = () => {
@@ -94,6 +98,10 @@ const App = () => {
 
   <Route path="/category/:name" element={<Categories />} />
   <Route path="/profile" element={<ProfilePage />} />
+  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+  <Route path="/about" element={<About />} />
+  <Route path="/license" element={<License />}/>
+  <Route path="/contact" element={<ContactSection />}/>
   <Route path="/community/category/:comname" element={<CommunityCategory/>} />
 </Routes>
     </div>

@@ -51,4 +51,16 @@ export const usePromptStore = create((set, get) => ({
       console.log(error)
     }
   },
+
+  DeletePrompt : async (data) => {
+    try {
+      const response = await axiosInstance.post(`/delete-prompt`,{data  })
+      return response.data
+    } catch (error) {
+      toast.error("Something went wrong") 
+      console.log(error)
+    }
+    
+  }
+
 }))
