@@ -13,7 +13,7 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.json())
 app.use(cookieParser())
 app.use(cors({
-    origin:"https://prompt-vault-3.onrender.com",
+    origin:"http://localhost:5173",
     credentials:true,
 }));
 app.use("/api/auth", authRoutes)
