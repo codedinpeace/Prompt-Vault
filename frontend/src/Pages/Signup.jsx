@@ -1,7 +1,7 @@
 import React, {useState} from 'react'
 import { Link } from 'react-router-dom'
 import { User, Eye, EyeClosed } from 'lucide-react'
-import Logo from '../smallComponents/logo'
+import Logo from '../SmallComponents/Logo'
 import { useAuthStore } from '../States/AuthStore'
 
 const Signup = () => {

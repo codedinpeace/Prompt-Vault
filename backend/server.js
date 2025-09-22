@@ -1,4 +1,4 @@
-const app = require('./src/app')
+const app = require('./src/index')
 
 
 app.listen(process.env.SERVER_STARTING_PORT, ()=>{
