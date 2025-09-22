@@ -50,14 +50,14 @@ const Community = () => {
   return (  
     <>
     
-    <div className="flex justify-center mt-10 flex-col items-center underline">  <h1 className="text-3xl text-gray-700 font-semibold">  PromptVault Community  </h1> <p className="text-xl opacity-70 mt-1"> Here you will find prompts posted by prompting experts  </p>
+    <div className="flex justify-center mt-10 flex-col items-center underline">  <h1 className="text-3xl text-gray-700 font-semibold max-sm:text-2xl">  PromptVault Community  </h1> <p className="text-xl opacity-70 mt-1 max-sm:text-[16px]"> Here you will find prompts posted by prompting experts  </p>
     </div>
     <div className="px-5">
       <div className="flex justify-center mt-10">
-        <h1 className="text-3xl font-medium">{name}</h1>
+        <h1 className="text-3xl font-medium"></h1>
       </div>
 
-      <div className="flex justify-center flex-wrap mt-10 gap-10">
+      <div className="flex justify-center flex-wrap mt-10 max-md:gap-5 gap-10">
         {categories.map(category => (
           <Link key={category} to={`/community/category/${category}`}>
             <button className="text-sm bg-[#9e92e8] px-3 py-1 rounded-full border-1 border-[#9e92e8] hover:bg-transparent hover:text-black cursor-pointer text-white font-medium active:scale-90 transition-all duration-300">
